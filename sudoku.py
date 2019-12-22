@@ -36,7 +36,7 @@ def boardPrinter(board):
             else:
                 print(str(board[i][j]) + " ", end="")
 
-
+#find empty field in board
 def emptyfield(board):
     #loops through fields (x,y)
     for i in range(0,9):
@@ -54,7 +54,7 @@ def validNumber(board, num, pos):
             # print("Found in Row")
             return False
 
-    # # 2) Check if number does not exist in column
+    # 2) Check if number does not exist in column
     for i in range(0,9):
         if board[pos[0]][i] == num and i != pos[1]:
             # print("Found in Col")
@@ -87,18 +87,18 @@ def boardSolve(board):
     if not blank:
         return True
     else:
-        row, col = blank
+        x, y = blank
         
     #only values 1-9 are permitted in sudoku
     for i in range(1,10):
-        if validNumber(board, i, (row, col)):
-            board[row][col] = i
+        if validNumber(board, i, (x, y)):
+            board[x][y] = i
             #if number is valid, run func to check if board is solved
             if boardSolve(board):
                 return True
             
             #backtracking to set previous value to position to blank
-            board[row][col] = 0
+            board[x][y] = 0
 
     return False
 
